@@ -1,0 +1,25 @@
+name: Verify HI research workspace
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install .
+      - run: python -m unittest discover -s tests -v
+      - run: researchos-hi validate examples/synthetic-stack.json
+      - run: researchos-hi run examples/synthetic-stack.json --output runs/demo
+      - run: researchos-hi verify runs/demo
+      - run: researchos-hi report runs/demo
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-stack-python-${{ matrix.python }}
+          path: runs/demo/
