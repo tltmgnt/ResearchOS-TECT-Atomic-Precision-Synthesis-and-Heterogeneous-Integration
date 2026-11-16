@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "id": "synthetic-stack-001",
+  "title": "Synthetic two-layer geometric screening example",
+  "owner": "example-only",
+  "hypothesis": "A multilayer record can track geometry and missing interface measurements without treating them as validated material quality.",
+  "data_kind": "synthetic",
+  "protocol": {
+    "method": "Not fabricated; illustrative data only",
+    "reference": "docs/MODEL.md",
+    "notes": "Material labels and all lattice/thickness values are fictional placeholders, not a growth recipe."
+  },
+  "substrate": {"material": "Substrate-S (fictional)", "lattice_constant_A": 5.0},
+  "layers": [
+    {"id": "layer-a", "material": "Material-A (fictional)", "thickness_nm": 4.0, "lattice_constant_A": 5.1},
+    {"id": "layer-b", "material": "Material-B (fictional)", "thickness_nm": 6.0, "lattice_constant_A": 5.2}
+  ],
+  "measurements": [
+    {"layer_id": "layer-a", "metric": "roughness_rms_nm", "value": 0.4, "uncertainty": 0.1, "method": "Synthetic fixture; no instrument", "evidence_ids": []}
+  ],
+  "targets": [
+    {"layer_id": "layer-a", "metric": "roughness_rms_nm", "operator": "<=", "value": 0.5, "rationale": "Example-only user target, not a DARPA requirement"},
+    {"layer_id": "layer-b", "metric": "interface_width_nm", "operator": "<=", "value": 0.5, "rationale": "Example-only user target; measurement is intentionally missing"}
+  ],
+  "evidence": []
+}
