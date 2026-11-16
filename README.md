@@ -68,3 +68,13 @@ Bundles are deterministic for identical input bytes, evidence and runner behavio
 - [Contributing](CONTRIBUTING.md)
 
 CI installs the package and runs tests plus the full example workflow across Python 3.10–3.13. Generated synthetic bundles are uploaded as workflow artifacts. The existing [license](LICENSE) is preserved.
+
+## Interactive browser app
+
+The `web/` directory provides a responsive stack designer, local experiment library, characterization and owner-defined targets, interface results, JSON/CSV exports, and local SHA-256 evidence checks. It is independent of the SynQuaNon app.
+
+Serve from the repository root with `python -m http.server 8000 --directory web` and open `http://localhost:8000`. Run web model checks with `node web/tests/model.test.mjs`. The app uses native browser modules and Web Crypto; use localhost or HTTPS.
+
+Records stay in browser storage. Export regularly; there is no GitHub, CLI, or cross-device synchronization. Record JSON exports are compatible with the CLI. Web result exports are summaries, not CLI run bundles. Selected evidence is hashed locally; only declarations are stored and exported. Keep the original evidence files under the exported record directory for CLI verification and capture. Imported and reloaded records do not re-verify the original files.
+
+Private hosted app: https://researchos-tect-hi.troturn31.chatgpt.site
